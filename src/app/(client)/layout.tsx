@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/customComp/header";
 import Footer from "@/components/customComp/footer";
 
-const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const poppins = localFont({
+  src: "../../fonts/poppinsFont.woff2",
+  variable: "--font-poppins",
+  weight: "400",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -28,10 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider dynamic>
-      <html lang="en2">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+      <html lang="en2" suppressHydrationWarning>
+        <body className={`${poppins.variable} antialiased`}>
           <Header />
           <main className="mx-auto min-h-screen max-w-screen-2xl">
             {children}

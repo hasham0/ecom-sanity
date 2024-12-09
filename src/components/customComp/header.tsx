@@ -2,17 +2,28 @@ import Form from "next/form";
 import Link from "next/link";
 import Image from "next/image";
 import React, { FC } from "react";
+import dynamic from "next/dynamic";
 import { User } from "lucide-react";
-import OrdersIcon from "./orders-icon";
-import { currentUser } from "@clerk/nextjs/server";
 import Container from "@/components/customComp/container";
-import CartIcon from "@/components/customComp/cart-icon";
+import { currentUser, User as ClerkUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
+const CartIcon = dynamic(() => import("@/components/customComp/cart-icon"), {
+  ssr: true,
+});
+const OrdersIcon = dynamic(
+  () => import("@/components/customComp/orders-icon"),
+  {
+    ssr: true,
+  },
+);
 
 type Props = {};
 
 const Header: FC<Props> = async ({}) => {
-  const user = await currentUser();
+  const user: ClerkUser | null = await currentUser();
+  //TODO: set user role base access
+  const isAdmin = true;
+
   return (
     <header className="w-full border-b border-b-gray-400 bg-white py-4">
       <Container className="flex items-center justify-between gap-5">
@@ -43,6 +54,15 @@ const Header: FC<Props> = async ({}) => {
             <SignedIn>
               <OrdersIcon />
             </SignedIn>
+            {isAdmin && (
+              <Link
+                href={"/studio"}
+                target="_blank"
+                className="flex rounded-md border border-gray-200 px-2 py-2.5 outline-none"
+              >
+                <p className="text-mf font-semibold">Studio</p>
+              </Link>
+            )}
             {user ? (
               <div className="flex w-full gap-2 rounded-md border border-gray-200 px-2 py-2.5 outline-none">
                 <UserButton />

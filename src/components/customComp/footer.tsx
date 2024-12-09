@@ -7,12 +7,13 @@ type Props = {};
 
 const Footer: FC<Props> = ({}) => {
   return (
-    <div className="flex items-center p-2">
-      <Container className="flex justify-between gap-1 py-5">
-        <p className="flex gap-3 capitalize text-gray-500">
-          Copyright <Copyright /> 2024{" "}
-          <span className="font-semibold text-darkBlue">reactBD</span> all right
-          reserved
+    <footer className="bg-lightBg text-sm">
+      <Container className="flex items-center justify-between gap-1 py-5 text-gray-500">
+        <p className="flex items-center gap-3 capitalize text-gray-500">
+          Copyright <Copyright /> 2024
+          <span className="font-semibold text-darkBlue">
+            reactBD
+          </span> all right reserved
         </p>
         <Image
           src={"/assets/payment.png"}
@@ -23,7 +24,7 @@ const Footer: FC<Props> = ({}) => {
           priority
         />
       </Container>
-    </div>
+    </footer>
   );
 };
 

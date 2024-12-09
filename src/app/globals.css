@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 @layer base {
@@ -71,5 +71,8 @@ body {
   }
   .hoverEffect {
     @apply cursor-pointer transition-all duration-300 ease-in-out;
+  }
+  .bb {
+    @apply border-2 border-black;
   }
 }

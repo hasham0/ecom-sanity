@@ -8,6 +8,8 @@ const envSchema = z.object({
   NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string(),
   NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
   NEXT_PUBLIC_SANITY_DATASET: z.string(),
+  SANITY_API_TOKEN: z.string(),
+  SANITY_API_READ_TOKEN: z.string(),
 });
 
 // Parse environment variables to validate them

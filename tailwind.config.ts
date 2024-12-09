@@ -10,15 +10,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        serif: ["var(--font-poppins)", ...fontFamily.serif],
       },
       colors: {
         lightOrange: "#fca99b",
         lightBlue: "#7688DB",
         darkBlue: "#6c7fd8",
         darkText: "#686e7d",
-        lightBg: "F8F8FB",
+        lightBg: "#F8F8FB",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

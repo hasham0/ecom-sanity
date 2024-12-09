@@ -14,8 +14,8 @@ const OrdersIcon: FC<Props> = ({}) => {
     >
       <ShoppingBasket className="size-6 text-darkBlue" />
       <div className="flex flex-col">
-        <p className="text-xs">
-          <span className="font-semibold">0</span> items
+        <p className="flex gap-x-2 text-xs">
+          <span className="font-semibold">0</span> <span>items</span>
         </p>
         <p className="font-semibold">Order</p>
       </div>

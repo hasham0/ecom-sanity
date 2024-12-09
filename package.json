@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typegen": "bunx sanity@latest schema extract && bunx sanity@latest typegen generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.5.1",
@@ -16,6 +17,7 @@
     "@sanity/vision": "3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.5.1",
     "lucide-react": "^0.462.0",
     "next": "15.0.3",
     "next-sanity": "^9.8.17",
