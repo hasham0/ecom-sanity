@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Control Headless CMS",
 };
 
-export default function RootLayout({
+export default function StudioLayout({
   children,
 }: {
   children: React.ReactNode;

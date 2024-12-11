@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { CategoryTS, ProductTS } from "@/types";
 import Categories from "./categories";
-import ProductCard from "./product-card";
+import ProductGrid from "./product-grid";
 
 type Props = { products: ProductTS; title?: boolean; categories: CategoryTS };
 
@@ -19,11 +19,7 @@ const ProductList: FC<Props> = ({ products, title = false, categories }) => {
           {"Don't"} wait. The time will never be just right.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products?.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+      <ProductGrid products={products} />
     </div>
   );
 };

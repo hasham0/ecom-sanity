@@ -1,6 +1,12 @@
 import { sanityFetch } from "../lib/live";
-import { CategoryTS, ProductTS, SaleTS } from "@/types";
-import { SALE_QUERY, PRODUCT_QUERY, CATEGORIES_QUERY } from "./query";
+import { CategoryTS, ProductTS, SaleTS, SingleProductTS } from "@/types";
+import {
+  SALE_QUERY,
+  PRODUCT_QUERY,
+  CATEGORIES_QUERY,
+  SINGLE_PRODUCT_QUERY_BY_SLUG,
+  PRODUCT_SEARCH_QUERY,
+} from "./query";
 
 const getSanitySales = async (): Promise<SaleTS> => {
   try {
@@ -38,4 +44,43 @@ const getSanityCategories = async (): Promise<CategoryTS> => {
   }
 };
 
-export { getSanitySales, getSanityProducts, getSanityCategories };
+const getSanitySingleProductBySlug = async (
+  slug: string,
+): Promise<SingleProductTS> => {
+  try {
+    const { data }: { data: SingleProductTS } = await sanityFetch({
+      query: SINGLE_PRODUCT_QUERY_BY_SLUG,
+      params: {
+        slug,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("🚀 ~ error:", error);
+    return null;
+  }
+};
+const getSanityProductBySearch = async (
+  searchParams: string,
+): Promise<ProductTS> => {
+  try {
+    const { data }: { data: ProductTS } = await sanityFetch({
+      query: PRODUCT_SEARCH_QUERY,
+      params: {
+        searchParams: searchParams,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("🚀 ~ error:", error);
+    return null;
+  }
+};
+
+export {
+  getSanitySales,
+  getSanityProducts,
+  getSanityCategories,
+  getSanitySingleProductBySlug,
+  getSanityProductBySearch,
+};

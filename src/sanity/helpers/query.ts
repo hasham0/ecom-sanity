@@ -4,6 +4,18 @@ const sanityQueries = {
   SALE_QUERY: defineQuery(`*[_type == "sale"] | order(name asc)`),
   PRODUCT_QUERY: defineQuery(`*[_type == "product"] | order(name asc)`),
   CATEGORIES_QUERY: defineQuery(`*[_type == "category"] | order(name asc)`),
+  SINGLE_PRODUCT_QUERY_BY_SLUG: defineQuery(
+    `*[_type=="product" && slug.current==$slug]|order(name asc)[0]`,
+  ),
+  PRODUCT_SEARCH_QUERY: defineQuery(
+    `*[_type=="product" && name match $searchParams]|order(name asc)`,
+  ),
 };
 
-export const { SALE_QUERY, PRODUCT_QUERY, CATEGORIES_QUERY } = sanityQueries;
+export const {
+  SALE_QUERY,
+  PRODUCT_QUERY,
+  CATEGORIES_QUERY,
+  SINGLE_PRODUCT_QUERY_BY_SLUG,
+  PRODUCT_SEARCH_QUERY,
+} = sanityQueries;

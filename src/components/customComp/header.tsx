@@ -7,6 +7,7 @@ import { User } from "lucide-react";
 import Container from "@/components/customComp/container";
 import { currentUser, User as ClerkUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
+import SanityStudio from "./sanity-studio";
 const CartIcon = dynamic(() => import("@/components/customComp/cart-icon"), {
   ssr: true,
 });
@@ -26,9 +27,9 @@ const Header: FC<Props> = async ({}) => {
 
   return (
     <header className="w-full border-b border-b-gray-400 bg-white py-4">
-      <Container className="flex items-center justify-between gap-5">
+      <Container className="flex items-center justify-evenly gap-5 sm:justify-between">
         {/* <!-- logo --> */}
-        <Link href={"/"}>
+        <Link href={"/"} className="flex min-w-fit items-center sm:items-start">
           <Image
             src={"/assets/logo.png"}
             alt="logo"
@@ -39,7 +40,7 @@ const Header: FC<Props> = async ({}) => {
           />
         </Link>
         {/* <!-- search bar --> */}
-        <Form action={"/search"} className="flex-1">
+        <Form action={"/search"} className="hidden flex-1 md:flex">
           <input
             type="text"
             name="query"
@@ -54,19 +55,11 @@ const Header: FC<Props> = async ({}) => {
             <SignedIn>
               <OrdersIcon />
             </SignedIn>
-            {isAdmin && (
-              <Link
-                href={"/studio"}
-                target="_blank"
-                className="flex rounded-md border border-gray-200 px-2 py-2.5 outline-none"
-              >
-                <p className="text-mf font-semibold">Studio</p>
-              </Link>
-            )}
+            {isAdmin && <SanityStudio />}
             {user ? (
               <div className="flex w-full gap-2 rounded-md border border-gray-200 px-2 py-2.5 outline-none">
                 <UserButton />
-                <div className="flex flex-col">
+                <div className="hidden flex-col md:flex">
                   <p className="text-xs">Welcome Back</p>
                   <p className="font-semibold">{user?.fullName}</p>
                 </div>
