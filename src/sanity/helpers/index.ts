@@ -6,6 +6,7 @@ import {
   CATEGORIES_QUERY,
   SINGLE_PRODUCT_QUERY_BY_SLUG,
   PRODUCT_SEARCH_QUERY,
+  CATEGORY_QUERY_BY_SLUG,
 } from "./query";
 
 const getSanitySales = async (): Promise<SaleTS> => {
@@ -39,7 +40,11 @@ const getSanityCategories = async (): Promise<CategoryTS> => {
     });
     return data;
   } catch (error) {
-    console.log("🚀 ~ getCateory ~ error:", error);
+    console.error(
+      "🚀 ~ getCategory ~ error:",
+      error instanceof Error ? error.message : error,
+    );
+
     return null;
   }
 };
@@ -77,10 +82,26 @@ const getSanityProductBySearch = async (
   }
 };
 
+const getSanityProductsByCateory = async (slug: string): Promise<ProductTS> => {
+  try {
+    const { data }: { data: ProductTS } = await sanityFetch({
+      query: CATEGORY_QUERY_BY_SLUG,
+      params: {
+        slug,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("🚀 ~ error:", error);
+    return null;
+  }
+};
+
 export {
   getSanitySales,
   getSanityProducts,
   getSanityCategories,
   getSanitySingleProductBySlug,
   getSanityProductBySearch,
+  getSanityProductsByCateory,
 };

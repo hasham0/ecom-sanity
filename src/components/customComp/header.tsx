@@ -26,8 +26,8 @@ const Header: FC<Props> = async ({}) => {
   const isAdmin = true;
 
   return (
-    <header className="w-full border-b border-b-gray-400 bg-white py-4">
-      <Container className="flex items-center justify-evenly gap-5 sm:justify-between">
+    <header className="sticky top-0 z-30 w-full border-b border-b-gray-400 bg-white py-4">
+      <Container className="flex flex-wrap items-center justify-evenly gap-5 sm:justify-between">
         {/* <!-- logo --> */}
         <Link href={"/"} className="flex min-w-fit items-center sm:items-start">
           <Image
@@ -40,7 +40,7 @@ const Header: FC<Props> = async ({}) => {
           />
         </Link>
         {/* <!-- search bar --> */}
-        <Form action={"/search"} className="hidden flex-1 md:flex">
+        <Form action={"/search"} className="hidden flex-1 lg:flex">
           <input
             type="text"
             name="query"
@@ -49,7 +49,7 @@ const Header: FC<Props> = async ({}) => {
           />
         </Form>
         {/* <!-- tabs --> */}
-        <div className="flex items-center gap-5">
+        <div className="flex w-3/4 items-center justify-around gap-5 lg:w-fit lg:justify-between">
           <CartIcon />
           <ClerkLoaded>
             <SignedIn>
@@ -57,11 +57,12 @@ const Header: FC<Props> = async ({}) => {
             </SignedIn>
             {isAdmin && <SanityStudio />}
             {user ? (
-              <div className="flex w-full gap-2 rounded-md border border-gray-200 px-2 py-2.5 outline-none">
+              <div className="flex w-full max-w-fit gap-2 rounded-md border border-gray-200 px-2 py-2.5 outline-none">
                 <UserButton />
                 <div className="hidden flex-col md:flex">
-                  <p className="text-xs">Welcome Back</p>
-                  <p className="font-semibold">{user?.fullName}</p>
+                  <p className="mt-1 text-sm font-semibold lg:text-base">
+                    {user?.fullName?.split(" ")[0]}
+                  </p>
                 </div>
               </div>
             ) : (

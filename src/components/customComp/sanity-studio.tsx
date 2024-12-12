@@ -9,7 +9,7 @@ const SanityStudio: FC<Props> = ({}) => {
     <Link
       href={"/studio"}
       target="_blank"
-      className="hoverEffect flex items-center rounded-md border border-gray-200 p-2 py-1 text-sm shadow-md hover:shadow-none"
+      className="hoverEffect flex items-baseline rounded-md border border-gray-200 p-3 py-1 text-sm shadow-md hover:shadow-none"
     >
       <LayoutDashboard className="size-6 text-darkBlue" />
       <div className="hidden flex-col p-2 md:flex">

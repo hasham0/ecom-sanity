@@ -23,7 +23,7 @@ const DiscountBanner: FC<Props> = ({ sales }) => {
           <CarouselItem key={sale?._id}>
             <Card>
               <CardContent className="p-0 capitalize">
-                <div className="flex flex-col items-center md:flex-row">
+                <div className="flex flex-col-reverse items-center md:flex-row">
                   <div className="flex flex-1 flex-col gap-2 p-6 md:gap-4 md:px-12">
                     <Badge
                       variant={"secondary"}
