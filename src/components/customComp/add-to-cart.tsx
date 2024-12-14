@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import toast, { Toaster } from "react-hot-toast";
 import QuantityButton from "./quantity-button";
 import PriceFormatter from "./price-formatter";
+import { useCartStore } from "@/zustand/hook/useCartStore";
 
 type Props = {
   product: Product;
@@ -14,17 +15,19 @@ type Props = {
 };
 
 const AddToCartButton: FC<Props> = ({ product, className }) => {
+  const { addItem, getItemCount } = useCartStore((state) => state);
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => setIsClient(true), []);
 
   if (!isClient) return null;
 
+  const itemCount = getItemCount(product._id);
+  const isOutOfStock = product.stock === 0;
   const handleAddToCart = () => {
-    toast.success("product added");
+    addItem(product);
+    toast.success(`${product.name?.substring(0, 12)}... added successfully`);
   };
-
-  const itemCount = 0;
 
   return (
     <div className="">
@@ -43,7 +46,7 @@ const AddToCartButton: FC<Props> = ({ product, className }) => {
         </div>
       ) : (
         <Button
-          disabled={product.stock === 0}
+          disabled={isOutOfStock}
           onClick={handleAddToCart}
           className={cn(
             "hoverEffect mt-2 w-full rounded-md border border-darkBlue bg-darkBlue/10 py-2 font-medium text-black hover:bg-darkBlue hover:text-white disabled:cursor-not-allowed disabled:border-darkBlue/10 disabled:bg-darkBlue/10 disabled:text-gray-400",

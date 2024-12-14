@@ -18,7 +18,7 @@ const CartIcon: FC<Props> = ({}) => {
   return (
     <Link
       href={"/cart"}
-      className="hoverEffect hidden items-center gap-2 rounded-md border border-gray-200 px-2 py-1 text-sm shadow-md hover:shadow-none sm:flex"
+      className="hoverEffect flex items-center gap-2 rounded-md border border-gray-200 px-2 py-1 text-sm shadow-md hover:shadow-none"
     >
       <ShoppingBagIcon className="size-6 text-darkBlue" />
       <div className="hidden flex-col md:flex">

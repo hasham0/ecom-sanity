@@ -10,7 +10,7 @@ const OrdersIcon: FC<Props> = ({}) => {
   return (
     <Link
       href={"/orders"}
-      className="hoverEffect hidden items-center gap-2 rounded-md border border-gray-200 px-2 py-1 text-sm shadow-md hover:shadow-none sm:flex"
+      className="hoverEffect flex items-center gap-2 rounded-md border border-gray-200 px-2 py-1 text-sm shadow-md hover:shadow-none"
     >
       <ShoppingBasket className="size-6 text-darkBlue" />
       <div className="hidden flex-col md:flex">

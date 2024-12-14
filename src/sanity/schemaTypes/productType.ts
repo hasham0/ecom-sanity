@@ -1,5 +1,4 @@
 import { TrolleyIcon } from "@sanity/icons";
-import { Subtitles } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
 export const productType = defineType({

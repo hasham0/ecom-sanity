@@ -1,5 +1,5 @@
 import { TagsIcon } from "@sanity/icons";
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 export const saleType = defineType({
   name: "sale",

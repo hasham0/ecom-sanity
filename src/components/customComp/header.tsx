@@ -27,7 +27,7 @@ const Header: FC<Props> = async ({}) => {
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-b-gray-400 bg-white py-4">
-      <Container className="flex flex-wrap items-center justify-evenly gap-5 sm:justify-between">
+      <Container className="flex items-center justify-between gap-5">
         {/* <!-- logo --> */}
         <Link href={"/"} className="flex min-w-fit items-center sm:items-start">
           <Image
@@ -49,7 +49,7 @@ const Header: FC<Props> = async ({}) => {
           />
         </Form>
         {/* <!-- tabs --> */}
-        <div className="flex w-3/4 items-center justify-around gap-5 lg:w-fit lg:justify-between">
+        <div className="flex w-3/4 items-center justify-end gap-5 sm:justify-evenly lg:w-fit">
           <CartIcon />
           <ClerkLoaded>
             <SignedIn>
