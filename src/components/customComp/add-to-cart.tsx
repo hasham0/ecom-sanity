@@ -4,8 +4,7 @@ import { Product } from "@/sanity/sanity.types";
 import React, { FC, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import toast, { Toaster } from "react-hot-toast";
-import QuantityButton from "./quantity-button";
+import QuantityButtons from "./quantity-buttons";
 import PriceFormatter from "./price-formatter";
 import { useCartStore } from "@/zustand/hook/useCartStore";
 
@@ -26,16 +25,15 @@ const AddToCartButton: FC<Props> = ({ product, className }) => {
   const isOutOfStock = product.stock === 0;
   const handleAddToCart = () => {
     addItem(product);
-    toast.success(`${product.name?.substring(0, 12)}... added successfully`);
   };
 
   return (
-    <div className="">
+    <div>
       {itemCount ? (
         <div className="flex flex-col gap-2 text-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground">Quantity</span>
-            <QuantityButton product={product} />
+            <QuantityButtons product={product} />
           </div>
           <div className="flex items-center justify-between">
             <span>Subtotal</span>

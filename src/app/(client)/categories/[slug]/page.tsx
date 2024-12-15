@@ -1,5 +1,4 @@
 import Container from "@/components/customComp/container";
-import ProductGrid from "@/components/customComp/product-grid";
 import ProductList from "@/components/customComp/product-list";
 import {
   getSanityCategories,

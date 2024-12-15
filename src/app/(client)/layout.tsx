@@ -26,9 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider dynamic>
-      <ZustandProvider>
-        <html lang="en2" suppressHydrationWarning>
-          <body className={`${poppins.variable} antialiased`}>
+      <html lang="en2" suppressHydrationWarning>
+        <body className={`${poppins.variable} antialiased`}>
+          <ZustandProvider>
             <Header />
             <main className="mx-auto min-h-screen max-w-screen-2xl">
               {children}
@@ -42,10 +42,10 @@ export default function RootLayout({
                 },
               }}
             />
-            <Footer />
-          </body>
-        </html>
-      </ZustandProvider>
+          </ZustandProvider>
+          <Footer />
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

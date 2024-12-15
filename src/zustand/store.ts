@@ -1,6 +1,7 @@
 import { CartStateTS, CartTS } from "@/types";
 import { persist, devtools } from "zustand/middleware";
 import { createStore } from "zustand";
+import toast from "react-hot-toast";
 
 export const initalCartState: CartStateTS = {
   items: [],
@@ -26,6 +27,9 @@ const createCartStore = () => {
                   ),
                 };
               } else {
+                toast.success(
+                  `${product.name?.substring(0, 12)}... added successfully`,
+                );
                 return {
                   items: [...state.items, { product, quantity: 1 }],
                 };
@@ -33,37 +37,55 @@ const createCartStore = () => {
             });
           },
           removeItem(productID) {
-            console.log("🚀 ~ removeItem ~ productID:", productID);
-            return set((state) => ({
-              items: state.items.reduce((acc, item) => {
-                // if (item.product._id === productID) {
-                //   if (item.quantity > 1) {
-                //     // acc.push({
-                //     //   ...item,quantity:item.quantity-1
-                //     // })
-                //     // state.items.push({
-                //     //   ...item,
-                //     //   quantity: item.quantity - 1,
-                //     // });
-                //     console.log("1");
-                //   }
-                // } else {
-                //   //acc.push(item)
-                //   console.log("2");
-                //   //   state.items.push(item);
-                // }
-                //      return acc;
-              }, []),
-            }));
+            return set((state) => {
+              const isItemExist = state.items.find(
+                (item) => item.product._id === productID,
+              );
+
+              if (isItemExist) {
+                if (isItemExist.quantity > 1) {
+                  return {
+                    items: state.items.map((item) =>
+                      item.product._id === productID
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item,
+                    ),
+                  };
+                } else {
+                  toast.success(
+                    `${isItemExist.product.name?.slice(0, 12)}... Product removed`,
+                  );
+                  return {
+                    items: state.items.filter(
+                      (item) => item.product._id !== productID,
+                    ),
+                  };
+                }
+              }
+              return {
+                items: [...state.items],
+              };
+            });
           },
           deleteCartProduct(productID) {
-            return set((state) => ({
-              items: state.items.filter(
-                (item) => item.product._id !== productID,
-              ),
-            }));
+            return set((state) => {
+              const isItemExist = state.items.find(
+                (item) => item.product._id === productID,
+              );
+              if (isItemExist) {
+                toast.success(
+                  `${isItemExist.product.name} delete successfully`,
+                );
+              }
+              return {
+                items: state.items.filter(
+                  (item) => item.product._id !== productID,
+                ),
+              };
+            });
           },
           resetCart() {
+            toast.success(`your cart reset`);
             return set({ items: [] });
           },
           getTotalPrice() {
@@ -85,8 +107,6 @@ const createCartStore = () => {
             const item = get().items.find(
               (item) => item.product._id === productID,
             );
-
-            //    console.log("🚀 ~ getItemCount ~ item:", item?.quantity);
             return item ? item.quantity : 0;
           },
           getGroupedItems() {

@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { ShoppingBagIcon } from "lucide-react";
 import React, { FC, useEffect, useState } from "react";
+import { useCartStore } from "@/zustand/hook/useCartStore";
 
 type Props = {};
 
 const CartIcon: FC<Props> = ({}) => {
   const [isClient, setIsClient] = useState<boolean>(false);
+  const groupItems = useCartStore((state) => state.getGroupedItems());
 
   useEffect(() => {
     setIsClient(true);
@@ -23,7 +25,8 @@ const CartIcon: FC<Props> = ({}) => {
       <ShoppingBagIcon className="size-6 text-darkBlue" />
       <div className="hidden flex-col md:flex">
         <p className="flex gap-x-2 text-xs">
-          <span className="font-semibold">0</span> <span>items</span>
+          <span className="font-semibold">{groupItems.length}</span>{" "}
+          <span>items</span>
         </p>
         <p className="font-semibold">Cart</p>
       </div>

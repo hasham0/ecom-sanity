@@ -2,37 +2,31 @@ import { Product } from "@/sanity/sanity.types";
 import React, { FC } from "react";
 import { Button } from "../ui/button";
 import { HiMinus, HiPlus } from "react-icons/hi2";
-import toast from "react-hot-toast";
 import { useCartStore } from "@/zustand/hook/useCartStore";
+import { cn } from "@/lib/utils";
 
 type Props = {
   product: Product;
   className?: string;
 };
 
-const QuantityButton: FC<Props> = ({ product, className }) => {
+const QuantityButtons: FC<Props> = ({ product, className }) => {
   const { getItemCount, removeItem, addItem } = useCartStore((state) => state);
   const itmeCount = getItemCount(product._id);
-  const isOutOfStock = product.stock === 0;
 
   const handleQuantity = (type: "DEC" | "INC") => {
     switch (type) {
       case "INC":
         addItem(product);
-        toast.success("quantity increase successfully");
-        break;
-      case "DEC":
-        removeItem(product._id);
-        toast.success("quantity dec");
         break;
       default:
+        removeItem(product._id);
         break;
     }
   };
 
-  // console.log("🚀 ~ itmeCount:", itmeCount);
   return (
-    <div className="flex items-center justify-between gap-x-2 pb-1 text-base">
+    <div className={cn("flex items-center gap-2 pb-1 text-base", className)}>
       <Button
         onClick={() => handleQuantity("DEC")}
         variant={"outline"}
@@ -57,4 +51,4 @@ const QuantityButton: FC<Props> = ({ product, className }) => {
   );
 };
 
-export default QuantityButton;
+export default QuantityButtons;
